@@ -2,7 +2,7 @@ const form = document.getElementById('orderForm');
 const tableBody = document.getElementById('ordersBody');
 
 // ------------------------ SET BACKEND URL ------------------------
-const API_URL = 'https://mysql-production-4591.up.railway.app/api/orders';
+const API_URL = 'https://locsweetcrustbakery-production.up.railway.app/api/orders';
 
 // ===================== DISPLAY ORDER =====================
 function displayOrder(order) {
