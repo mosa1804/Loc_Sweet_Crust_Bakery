@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mosa Manyeli">
+    <meta name="description" content="Sweet Crust Bakery System">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Crust Bakery System</title>
+    <link rel="icon" href="./images/stock-illustration-best-bakery.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="Crust-bakery.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="./images/stock-illustration-best-bakery.jpg" alt="Sweet Crust Bakery Logo" class="logo">
+            <div class="header-text">
+                <h1>🎂 Sweet Crust Bakery 🍨</h1>
+                <p><u>Customer Order Management System</u></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Side Panel -->
+        <nav class="side-panel">
+            <h2><u>Menu Options</u></h2>
+            <ul>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="add-order">Add New Order</a></li>
+                <li><a href="#" data-page="view-orders">View Existing Orders</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <div class="home-banner">
+                    <img src="./images/Screenshot.png" alt="Sweet Crust Bakery Banner">
+                    <div class="home-text">
+                        <h2>Welcome to Sweet Crust Bakery</h2>
+                        <p>Please use the menu on the left to add new orders or view existing orders.</p>
+                        <p>Manage customer orders efficiently and keep track of all records with ease.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Order Page -->
+            <div id="add-order" class="page">
+                <h2>Add New Order</h2>
+                <form id="orderForm">
+
+                    <label for="orderId">Order ID</label>
+                    <input type="text" id="orderId" placeholder="Enter Order ID" required>
+
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name" required>
+
+                    <label for="product">Product Ordered</label>
+                    <select id="product" required>
+                        <option value="">Select Product</option>
+                        <option value="Cake">Cake</option>
+                        <option value="Bread">Bread</option>
+                        <option value="Muffin">Muffin</option>
+                        <option value="Cookies">Cookies</option>
+                        <option value="Sandwich">Sandwich</option>
+                        <option value="Cupcakes">Cupcakes</option>
+                    </select>
+
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" placeholder="Enter quantity" required min="1">
+
+                    <label for="orderDate">Order Date</label>
+                    <input type="date" id="orderDate" required>
+
+                   <label for="status">Order Status</label>
+                   <select id="status" required>
+                   <option value="Pending">Pending</option>
+                   <option value="Completed">Completed</option>
+                    </select>
+
+                    <button type="submit">Add Order</button>
+                </form>
+            </div>
+
+            <!-- View Orders Page -->
+            <div id="view-orders" class="page">
+                <h2>All Existing Orders</h2>
+                <table id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Product Ordered</th>
+                            <th>Quantity</th>
+                            <th>Order Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                        <!-- Orders will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sweet Crust Bakery System | Designed by Mosa Manyeli. All Rights Reserved.</p>
+    </footer>
+
+    <!-- External JS -->
+    <script src="Bakery-script.js"></script>
+
+    <!-- Inline Script for Page Navigation -->
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const links = document.querySelectorAll('.side-panel a');
+
+        links.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const pageId = link.dataset.page;
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

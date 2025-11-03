@@ -1,0 +1,12 @@
+CREATE DATABASE Crust_bakery_db;
+
+USE Crust_bakery_db;
+
+CREATE TABLE Orders (
+    Order_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Customer_Name VARCHAR(100) NOT NULL,
+    Product VARCHAR(50) NOT NULL,
+    Quantity INT NOT NULL,
+    Order_date DATE NOT NULL,
+    Status VARCHAR(20) DEFAULT 'Pending'
+);

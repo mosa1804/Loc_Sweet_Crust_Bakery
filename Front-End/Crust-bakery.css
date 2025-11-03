@@ -1,0 +1,403 @@
+/* ************************ Body Setup ************************ */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8ec; /* soft cream bakery color */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ************************ Header ************************ */
+header {
+    text-align: center;
+    color: #251809;
+    padding: 30px 0;
+    background-color: #af8149;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header layout (for logo + title) */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 40px;
+    width: 101px;
+    height: 101px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.header-text {
+    text-align: center;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #251809;
+}
+
+.header-text p {
+    margin: 6px 0 0;
+    color: lightgoldenrodyellow;
+}
+
+/* ************************ Footer ************************ */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    font-weight: bold;
+    color: #4b2b08;
+    background-color: #f4b66b;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer p {
+    position: relative;
+    z-index: 1;
+}
+
+/* ************************ Header/Footer Background Images ************************ */
+header::before,
+footer::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('../images/photo.jpeg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+/* ************************ Container for Side Panel + Main ************************ */
+.container {
+    display: flex;
+    width: 95%;
+    margin: 25px auto;
+    gap: 20px;
+    min-height: calc(100vh - 280px);
+}
+
+/* ************************ Side Panel ************************ */
+.side-panel {
+    width: 190px;
+    background-color: rgb(53, 51, 51);
+    color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.side-panel ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.side-panel li {
+    margin: 15px 0;
+}
+
+.side-panel a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.side-panel a:hover,
+.side-panel a.active-link {
+    background-color: #4b2b08;
+}
+
+/* ************************ Main Content ************************ */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Each Page */
+.page {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.page.active {
+    display: block;
+}
+
+/* ************************ Form Styling ************************ */
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+/* Specific styling for Order ID field */
+#orderId {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #4b2b08;
+}
+
+/* Specific styling for Status dropdown */
+#status {
+    background-color: #fff8ec;
+    border: 2px solid #f4b66b;
+}
+
+form button {
+    width: 100%;
+    background: #4b2b08;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #7a5224;
+}
+
+/* ************************ Table Styling ************************ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #f4b66b;
+    color: #4b2b08;
+}
+
+/* Status dropdown in table */
+.status {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Style different statuses */
+.status option[value="Pending"] {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status option[value="Completed"] {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Status display styling */
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+button.edit, button.delete {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
+
+button.edit {
+    background: #f1b24a;
+    color: white;
+}
+
+button.delete {
+    background: #e04b3f;
+    color: white;
+}
+
+button.edit:hover {
+    background: #e1a239;
+}
+
+button.delete:hover {
+    background: #d43b2f;
+}
+
+/* Order ID styling in table */
+td:first-child {
+    font-weight: bold;
+    color: #4b2b08;
+    background-color: #f8f8f8;
+}
+
+/* ************************ Home Banner ************************ */
+.home-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.home-banner img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    filter: brightness(70%);
+    border-radius: 12px;
+}
+
+/* Text on top of banner */
+.home-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff8ec;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.home-text h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #f5b971;
+}
+
+.home-text p {
+    font-size: 1.1em;
+    line-height: 1.4em;
+}
+
+/* ************************ Form Layout Improvements ************************ */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ************************ Responsive (for phones/tablets) ************************ */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .side-panel {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .home-banner img {
+        height: 250px;
+    }
+
+    .logo {
+        left: 10px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    table {
+        font-size: 0.9em;
+    }
+    
+    th, td {
+        padding: 6px;
+    }
+}
+
+/* Success and error message styling */
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
