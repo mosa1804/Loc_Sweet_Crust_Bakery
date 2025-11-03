@@ -5,27 +5,33 @@ const tableBody = document.getElementById('ordersBody');
 const API_URL = 'https://locsweetcrustbakery-production.up.railway.app/api/orders';
 
 // ===================== DISPLAY ORDER =====================
+// ===================== DISPLAY ORDER =====================
 function displayOrder(order) {
     const row = document.createElement('tr');
+    
+    // Debug: Check what data you're receiving
+    console.log('Order data:', order);
+    
     row.innerHTML = `
-        <td>${order.id}</td>
-        <td>${order.customer}</td>
-        <td>${order.product}</td>
-        <td>${order.quantity}</td>
-        <td>${new Date(order.order_date).toLocaleDateString()}</td>
+        <td>${order.Order_ID || order.id || 'N/A'}</td>
+        <td>${order.Customer_Name || order.customer || 'N/A'}</td>
+        <td>${order.Product || order.product || 'N/A'}</td>
+        <td>${order.Quantity || order.quantity || 'N/A'}</td>
+        <td>${order.Order_date ? new Date(order.Order_date).toLocaleDateString() : 'Invalid Date'}</td>
         <td>
             <select class="status">
-                <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                <option value="Pending" ${(order.Status || order.status) === 'Pending' ? 'selected' : ''}>Pending</option>
+                <option value="Completed" ${(order.Status || order.status) === 'Completed' ? 'selected' : ''}>Completed</option>
             </select>
         </td>
         <td><button class="delete">Delete</button></td>
     `;
 
-    // Update status
+    // Update status - fix the ID reference
+    const orderId = order.Order_ID || order.id;
     row.querySelector('.status').addEventListener('change', function () {
         const newStatus = this.value;
-        fetch(`${API_URL}/${order.id}`, {
+        fetch(`${API_URL}/${orderId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus }),
@@ -33,20 +39,20 @@ function displayOrder(order) {
         .then(res => res.json())
         .then(data => {
             if (data.error) throw new Error(data.error);
-            alert(`Order #${order.id} status updated to "${newStatus}"`);
+            alert(`Order #${orderId} status updated to "${newStatus}"`);
         })
         .catch(err => alert('Error updating status: ' + err.message));
     });
 
-    // Delete order
+    // Delete order - fix the ID reference
     row.querySelector('.delete').addEventListener('click', function () {
-        if (!confirm(`Are you sure you want to delete order #${order.id}?`)) return;
-        fetch(`${API_URL}/${order.id}`, { method: 'DELETE' })
+        if (!confirm(`Are you sure you want to delete order #${orderId}?`)) return;
+        fetch(`${API_URL}/${orderId}`, { method: 'DELETE' })
             .then(res => res.json())
             .then(data => {
                 if (data.error) throw new Error(data.error);
                 row.remove();
-                alert(`Order #${order.id} deleted successfully!`);
+                alert(`Order #${orderId} deleted successfully!`);
             })
             .catch(err => alert('Error deleting order: ' + err.message));
     });
@@ -58,16 +64,23 @@ function displayOrder(order) {
 function loadOrders() {
     tableBody.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
     fetch(API_URL)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.json();
+        })
         .then(orders => {
+            console.log('Orders received:', orders); // Debug line
             tableBody.innerHTML = '';
+            
             if (!Array.isArray(orders) || orders.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="7">No orders found.</td></tr>';
                 return;
             }
+            
             orders.forEach(displayOrder);
         })
         .catch(err => {
+            console.error('Error loading orders:', err);
             tableBody.innerHTML = `<tr><td colspan="7" style="color:red;">Error loading orders: ${err.message}</td></tr>`;
         });
 }
