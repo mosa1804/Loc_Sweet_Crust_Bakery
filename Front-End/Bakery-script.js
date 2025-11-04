@@ -5,13 +5,11 @@ const tableBody = document.getElementById('ordersBody');
 const API_URL = 'https://locsweetcrustbakery-production.up.railway.app/api/orders';
 
 // ===================== DISPLAY ORDER =====================
-// ===================== DISPLAY ORDER =====================
 function displayOrder(order) {
     const row = document.createElement('tr');
     
     // Debug: Check what data you're receiving
     console.log('Order data:', order);
-    
     row.innerHTML = `
         <td>${order.Order_ID || order.id || 'N/A'}</td>
         <td>${order.Customer_Name || order.customer || 'N/A'}</td>

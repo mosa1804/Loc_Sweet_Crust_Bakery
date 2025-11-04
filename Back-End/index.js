@@ -41,7 +41,7 @@ app.get('/api/orders', (req, res) => {
   });
 });
 
-// Add new order
+// Add new order - FIXED VERSION
 app.post('/api/orders', (req, res) => {
   const { orderId, customer, product, quantity, order_date, status } = req.body;
   
@@ -55,8 +55,17 @@ app.post('/api/orders', (req, res) => {
   db.query(sql, [orderId, customer, product, quantity, order_date, status], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     
-    // Just send success message - frontend will reload all orders
-    res.json({ message: 'Order added successfully', orderId: orderId });
+    // FIX: Return the actual order data instead of just a message
+    const newOrder = {
+      Order_ID: orderId,
+      Customer_Name: customer,
+      Product: product,
+      Quantity: quantity,
+      Order_date: order_date,
+      Status: status
+    };
+    
+    res.json(newOrder);
   });
 });
 
