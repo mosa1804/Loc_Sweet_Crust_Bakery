@@ -1,14 +1,14 @@
 const form = document.getElementById('orderForm');
 const tableBody = document.getElementById('ordersBody');
 
-// ------------------------ SET BACKEND URL ------------------------
+// ===================== SET BACKEND URL =====================
 const API_URL = 'https://locsweetcrustbakery-production.up.railway.app/api/orders';
 
-// ===================== DISPLAY ORDER =====================
+// ===================== VIEW/DISPLAY ALL ORDERS =====================
 function displayOrder(order) {
     const row = document.createElement('tr');
     
-    // Debug: Check what data you're receiving
+    // Debug: Check which data is being received
     console.log('Order data:', order);
     row.innerHTML = `
         <td>${order.Order_ID || order.id || 'N/A'}</td>
@@ -17,15 +17,15 @@ function displayOrder(order) {
         <td>${order.Quantity || order.quantity || 'N/A'}</td>
         <td>${order.Order_date ? new Date(order.Order_date).toLocaleDateString() : 'Invalid Date'}</td>
         <td>
-            <select class="status">
-                <option value="Pending" ${(order.Status || order.status) === 'Pending' ? 'selected' : ''}>Pending</option>
-                <option value="Completed" ${(order.Status || order.status) === 'Completed' ? 'selected' : ''}>Completed</option>
-            </select>
+        <select class="status">
+          <option value="Pending" ${(order.Status || order.status) === 'Pending' ? 'selected' : ''}>Pending</option>
+          <option value="Completed" ${(order.Status || order.status) === 'Completed' ? 'selected' : ''}>Completed</option>
+        </select>
         </td>
         <td><button class="delete">Delete</button></td>
     `;
 
-    // Update status - fix the ID reference
+    // ===================== UPDATE ORDER STATUS =====================
     const orderId = order.Order_ID || order.id;
     row.querySelector('.status').addEventListener('change', function () {
         const newStatus = this.value;
@@ -37,20 +37,20 @@ function displayOrder(order) {
         .then(res => res.json())
         .then(data => {
             if (data.error) throw new Error(data.error);
-            alert(`Order #${orderId} status updated to "${newStatus}"`);
+            alert(`Order number ${orderId} status updated to "${newStatus}"`);
         })
         .catch(err => alert('Error updating status: ' + err.message));
     });
 
-    // Delete order - fix the ID reference
+    // ===================== DELETE ORDER =====================
     row.querySelector('.delete').addEventListener('click', function () {
-        if (!confirm(`Are you sure you want to delete order #${orderId}?`)) return;
+        if (!confirm(`Are you sure you want to delete order number ${orderId}?`)) return;
         fetch(`${API_URL}/${orderId}`, { method: 'DELETE' })
             .then(res => res.json())
             .then(data => {
                 if (data.error) throw new Error(data.error);
                 row.remove();
-                alert(`Order #${orderId} deleted successfully!`);
+                alert(`Order number ${orderId} deleted successfully!`);
             })
             .catch(err => alert('Error deleting order: ' + err.message));
     });
@@ -58,12 +58,12 @@ function displayOrder(order) {
     tableBody.appendChild(row);
 }
 
-// ===================== LOAD ALL ORDERS =====================
+// ===================== LOAD ALL ORDERS ON THE TABLE =====================
 function loadOrders() {
     tableBody.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
     fetch(API_URL)
         .then(res => {
-            if (!res.ok) throw new Error('Network response was not ok');
+            if (!res.ok) throw new Error('Network response was not okay');
             return res.json();
         })
         .then(orders => {

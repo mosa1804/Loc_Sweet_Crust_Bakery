@@ -10,56 +10,56 @@
     <link rel="stylesheet" href="Crust-bakery.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Field -->
     <header>
         <div class="header-container">
-            <img src="./images/stock-illustration-best-bakery.jpg" alt="Sweet Crust Bakery Logo" class="logo">
-            <div class="header-text">
-                <h1>🎂 Sweet Crust Bakery 🍨</h1>
-                <p><u>Customer Order Management System</u></p>
-            </div>
+        <img src="./images/stock-illustration-best-bakery.jpg" alt="Sweet Crust Bakery Logo" class="logo">
+        <div class="header-text">
+        <h1>🎂 Sweet Crust Bakery 🍨</h1>
+        <p><u>Customer Order Management System</u></p>
+        </div>
         </div>
     </header>
 
     <!-- Main Container -->
+    <!-- Side Panel Navigation bar -->
     <div class="container">
-        <!-- Side Panel -->
         <nav class="side-panel">
-            <h2><u>Menu Options</u></h2>
-            <ul>
-                <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" data-page="add-order">Add New Order</a></li>
-                <li><a href="#" data-page="view-orders">View Existing Orders</a></li>
-            </ul>
+        <h2><u>Menu Options</u></h2>
+        <ul>
+        <li><a href="#" data-page="home">Home</a></li>
+        <li><a href="#" data-page="add-order">Add New Order</a></li>
+        <li><a href="#" data-page="view-orders">View Existing Orders</a></li>
+        </ul>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Home Page -->
-            <div id="home" class="page active">
-                <div class="home-banner">
-                    <img src="./images/Screenshot.png" alt="Sweet Crust Bakery Banner">
-                    <div class="home-text">
-                        <h2>Welcome to Sweet Crust Bakery</h2>
-                        <p>Please use the menu on the left to add new orders or view existing orders.</p>
-                        <p>Manage customer orders efficiently and keep track of all records with ease.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+        <div class="home-banner">
+            <img src="./images/Screenshot.png" alt="Sweet Crust Bakery Banner">
+        <div class="home-text">
+            <h2>Welcome to Sweet Crust Bakery</h2>
+            <p>Please use the menu on the left to add new orders or view existing orders.</p>
+            <p>Manage customer orders efficiently and keep track of all records with ease.</p>
+        </div>
+        </div>
+        </div>
 
-            <!-- Add Order Page -->
-            <div id="add-order" class="page">
-                <h2>Add New Order</h2>
-                <form id="orderForm">
+        <!-- Add Order Page -->
+        <div id="add-order" class="page">
+        <h2>Add New Order</h2>
+        <form id="orderForm">
 
-                    <label for="orderId">Order ID</label>
-                    <input type="text" id="orderId" placeholder="Enter Order ID" required>
+        <label for="orderId">Order ID</label>
+        <input type="text" id="orderId" placeholder="Enter Order ID" required>
 
-                    <label for="customerName">Customer Name</label>
-                    <input type="text" id="customerName" placeholder="Enter customer name" required>
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="customerName" placeholder="Enter customer name" required>
 
-                    <label for="product">Product Ordered</label>
-                    <select id="product" required>
+        <label for="product">Product Ordered</label>
+        <select id="product" required>
                         <option value="">Select Product</option>
                         <option value="Cake">Cake</option>
                         <option value="Bread">Bread</option>
@@ -67,7 +67,7 @@
                         <option value="Cookies">Cookies</option>
                         <option value="Sandwich">Sandwich</option>
                         <option value="Cupcakes">Cupcakes</option>
-                    </select>
+        </select>
 
                     <label for="quantity">Quantity</label>
                     <input type="number" id="quantity" placeholder="Enter quantity" required min="1">
@@ -81,15 +81,15 @@
                    <option value="Completed">Completed</option>
                     </select>
 
-                    <button type="submit">Add Order</button>
-                </form>
-            </div>
+        <button type="submit">Add Order</button>
+        </form>
+        </div>
 
-            <!-- View Orders Page -->
-            <div id="view-orders" class="page">
-                <h2>All Existing Orders</h2>
-                <table id="ordersTable">
-                    <thead>
+        <!-- View Orders Page -->
+        <div id="view-orders" class="page">
+        <h2>All Existing Orders</h2>
+        <table id="ordersTable">
+        <thead>
                         <tr>
                             <th>Order ID</th>
                             <th>Customer Name</th>
@@ -99,24 +99,24 @@
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                    </thead>
-                    <tbody id="ordersBody">
-                        <!-- Orders will be dynamically inserted here -->
-                    </tbody>
-                </table>
+        </thead>
+        <tbody id="ordersBody">
+       <!-- Orders will be automatically be inserted here -->
+        </tbody>
+        </table>
             </div>
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Page Footer -->
     <footer>
         <p>&copy; 2025 Sweet Crust Bakery System | Designed by Mosa Manyeli. All Rights Reserved.</p>
     </footer>
 
-    <!-- External JS -->
+    <!-- External JS (Backer-script) -->
     <script src="Bakery-script.js"></script>
 
-    <!-- Inline Script for Page Navigation -->
+    <!-- Inline Script for the Navigation on the Page -->
     <script>
         const pages = document.querySelectorAll('.page');
         const links = document.querySelectorAll('.side-panel a');

@@ -5,15 +5,14 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// ===================== MIDDLEWARE =====================
 app.use(cors());
 app.use(bodyParser.json());
 
-// Database connection
+// DATABASE CONNECTION 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -30,9 +29,8 @@ db.connect(err => {
   console.log('Connected to MySQL');
 });
 
-// Routes
-
-// Get all orders
+// ===================== ROUTES =====================
+// Get all orders from the database
 app.get('/api/orders', (req, res) => {
   const sql = 'SELECT * FROM Orders ORDER BY Order_ID DESC';
   db.query(sql, (err, results) => {
@@ -41,7 +39,7 @@ app.get('/api/orders', (req, res) => {
   });
 });
 
-// Add new order - FIXED VERSION
+// Add new order
 app.post('/api/orders', (req, res) => {
   const { orderId, customer, product, quantity, order_date, status } = req.body;
   
@@ -55,7 +53,7 @@ app.post('/api/orders', (req, res) => {
   db.query(sql, [orderId, customer, product, quantity, order_date, status], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     
-    // FIX: Return the actual order data instead of just a message
+    // Return the actual order data
     const newOrder = {
       Order_ID: orderId,
       Customer_Name: customer,
@@ -91,7 +89,7 @@ app.delete('/api/orders/:id', (req, res) => {
   db.query(sql, [id], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     if (result.affectedRows === 0) return res.status(404).json({ error: 'Order not found' });
-    res.json({ message: 'Order deleted successfully' });
+    res.json({ message: 'Order has been deleted successfully' });
   });
 });
 
