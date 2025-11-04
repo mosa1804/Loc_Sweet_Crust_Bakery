@@ -29,28 +29,40 @@ REST API for communication
 
 Features
 Add orders with: Order ID, Customer Name, Product, Quantity, Date, Status
+
 View all orders in a table
+
 Update order status with dropdown
+
 Delete orders with confirmation
+
 Input validation to prevent errors
 
 Technology Used
+
 Frontend: HTML, CSS, JavaScript
+
 Backend: Node.js, Express
+
 Database: MySQL
 
 Hosting: Railway (Back-end)
-       : Vercel (Front-end)
+       
+Hosting: Vercel (Front-end)
 
 How to Run
+
 Backend runs on Railway automatically
+
 Frontend connects to the live backend
+
 Open the website and start managing orders!
 
 Project Info
 This was created for the DIWA2110 Web Application Development course at Limkokwing University.
 
 Student: Mosa Manyeli
+
 Lecturer: Mr. Teboho Talasi
 
 Live Demo
