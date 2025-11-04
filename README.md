@@ -54,6 +54,10 @@ Student: Mosa Manyeli
 Lecturer: Mr. Teboho Talasi
 
 Live Demo
-Backend API: https://locsweetcrustbakery-production.up.railway.app/api/orders
-
 GitHub: https://github.com/mosa1804/Loc_Sweet_Crust_Bakery
+Front-End: https://vercel.com/mosas-projects-435c7c33/loc-sweet-crust-bakery
+Back-End: https://railway.com/project/5c25506b-c896-493f-a76a-fa16be8e5069?environmentId=dff65365-c5e5-4cc6-8852-efce52b98c76
+Back-End API: https://locsweetcrustbakery-production.up.railway.app/api/orders
+
+
+
